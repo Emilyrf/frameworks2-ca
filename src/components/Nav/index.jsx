@@ -1,13 +1,11 @@
-
+import React from 'react';
 import NavLink from '../NavLink';
-
-
 
 export default function NavBar() {
 
     return (
         <header>
-            <nav>
+            <nav className="flex h-20 bg-gray-50 justify-center items-center gap-x-12 px-5 sm:rounded-xl sm:m-5">
                 <NavLink to='/'>
                     Home
                 </NavLink>
@@ -21,3 +19,4 @@ export default function NavBar() {
         </header>
     )
 }
+
