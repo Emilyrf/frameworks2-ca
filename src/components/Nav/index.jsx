@@ -1,5 +1,7 @@
 import React from 'react';
 import NavLink from '../NavLink';
+import { ShoppingCartIcon } from '@heroicons/react/24/outline'
+
 
 export default function NavBar() {
 
@@ -13,7 +15,7 @@ export default function NavBar() {
                     Contact
                 </NavLink>
                 <NavLink to='/cart'>
-                    Cart
+                <ShoppingCartIcon className="h-8" />
                 </NavLink>
             </nav>
         </header>
