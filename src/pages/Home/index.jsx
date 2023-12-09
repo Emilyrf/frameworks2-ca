@@ -1,5 +1,10 @@
+import Banner from "../../components/Banner"
+
 export default function Homepage() {
     return (
-        <h1>Products</h1>
+        <main>
+            <Banner />
+            <h1>Homepage</h1>
+        </main>
     )
 }
