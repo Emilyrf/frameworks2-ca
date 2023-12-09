@@ -5,6 +5,7 @@ import ContactPage from "./pages/Contact";
 import CartPage from "./pages/Cart";
 import ProductPage from "./pages/Product";
 import NotFound from "./pages/NotFound";
+import Footer from "./components/Footer";
 
 function AppRoutes() {
   return (
@@ -19,6 +20,7 @@ function AppRoutes() {
 
           <Route path="*" element={<NotFound />} />
         </Routes>
+        < Footer />
     </BrowserRouter>
   )
   
