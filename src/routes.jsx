@@ -6,12 +6,14 @@ import CartPage from "./pages/Cart";
 import ProductPage from "./pages/Product";
 import NotFound from "./pages/NotFound";
 import Footer from "./components/Footer";
+import { CartProvider } from "./context/cart";
 
 function AppRoutes() {
   return (
     <BrowserRouter>
       <NavBar/>
-      <Routes>
+      <CartProvider>
+       <Routes>
           <Route path="/" element={<Homepage/>} />
           <Route path="/contact" element={<ContactPage/>} />
           <Route path="/cart" element={<CartPage />} />
@@ -20,7 +22,8 @@ function AppRoutes() {
 
           <Route path="*" element={<NotFound />} />
         </Routes>
-        < Footer />
+      </CartProvider>
+      < Footer />
     </BrowserRouter>
   )
   
