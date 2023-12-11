@@ -31,8 +31,7 @@ const { products, isLoading, isError } = useApi(`https://api.noroff.dev/api/v1/o
         <img className="rounded-lg" src={products.imageUrl} alt={products.title} />
         <h2 className="text-2xl font-bold mt-4">{products.title}</h2>
         <div className="flex items-center mt-2">
-            <span className="text-gray-500">Stars:</span>
-            <span className="text-gray-500">Stars:</span>
+            <span className="text-gray-500">Stars: {products.rating}</span>
         </div>
         <p className="mt-4">{products.description}</p>
         <div className="mt-4">

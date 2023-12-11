@@ -6,17 +6,18 @@ export default function ProductCard({ product }) {
 
     return (
         <>
-            <img className='rounded-md h-48' src={product.imageUrl} alt={product.title} />
-            <div className='mt-4'>
-                <h2 className='text-lg uppercase font-bold'>{product.title}</h2>
-                <p className='mt-2 text-gray-600 text-sm'>{product.description.slice(0, 40)}...</p>
-                <p className='mt-2 text-gray-600'>${product.price}</p>
+            <figure><img src={product.imageUrl} alt={product.title} /></figure>
+            <div className="card-body">
+                <h2 className='card-title'>{product.title}</h2>
+                <p>{product.description.slice(0, 40)}...</p>
+                <p>${product.price}</p>
+                <div className="card-actions justify-end">
+                    <Link to={`/product/${product.id}`}>
+                        <button className="btn btn-primary">Buy Now</button>
+                    </Link>
+                </div>
             </div>
-            <div className='mt-6 flex justify-between items-center'>
-                <Link to={`/product/${product.id}`}>
-                    <MainButton>View Product</MainButton>
-                </Link>
-            </div>
+
 
         </>
     )

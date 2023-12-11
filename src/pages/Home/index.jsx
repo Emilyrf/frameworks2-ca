@@ -17,10 +17,10 @@ export default function Homepage() {
     return (
         <main>
             <Banner />
-            <h1>Homepage</h1>
-            <div className='grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-10'>
+            <h1 className="text-3xl font-bold m-5">Homepage</h1>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-8">
                 {products.map((product) => (
-                    <div key={product.id} className='bg-white shadow-md rounded-lg px-10 py-10'>
+                    <div key={product.id} className="card card-compact bg-base-100 shadow-xl h-96">
                         <ProductCard product={product} />
                     </div>
                 ))}
