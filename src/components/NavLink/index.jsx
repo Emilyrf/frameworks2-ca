@@ -7,7 +7,7 @@ export default function NavLink({ children, to }) {
   return (
     <Link
       className={` 
-      hover:underline
+      btn btn-ghost text-xl
         ${currentLocation.pathname === to ? 'font-bold' : ''}
       `}
       to={to}
