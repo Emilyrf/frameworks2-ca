@@ -8,7 +8,7 @@ import MainButton from '../../components/MainButton';
 export default function ProductPage() {
 const { id } = useParams();
 const { products, isLoading, isError } = useApi(`https://api.noroff.dev/api/v1/online-shop/${id}`);
-// const { addToCart } = useContext(CartContext);
+const { addToCart } = useContext(CartContext);
 
   if (isLoading) {
     return <div>Loading</div>;

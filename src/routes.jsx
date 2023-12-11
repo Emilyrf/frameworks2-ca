@@ -11,11 +11,11 @@ import { CartProvider } from "./context/cart";
 function AppRoutes() {
   return (
     <BrowserRouter>
-      <NavBar/>
       <CartProvider>
-       <Routes>
-          <Route path="/" element={<Homepage/>} />
-          <Route path="/contact" element={<ContactPage/>} />
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<Homepage />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="/cart" element={<CartPage />} />
 
           <Route path="/product/:id" element={<ProductPage />} />
@@ -26,7 +26,7 @@ function AppRoutes() {
       < Footer />
     </BrowserRouter>
   )
-  
+
 }
 
 export default AppRoutes
