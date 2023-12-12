@@ -4,7 +4,7 @@ const SearchInput = ({ value, onChange }) => (
       placeholder="Search products..."
       value={value}
       onChange={onChange}
-      className="mt-3 p-2 border border-gray-300 rounded-md"
+      className="input input-bordered input-primary w-full max-w-xs"
     />
   );
   
