@@ -1,7 +1,9 @@
+import { useState } from "react";
 import Banner from "../../components/Banner";
 import useApi from '../../hooks/useApi';
-import ProductCard from "../../components/ProductCard";
-import { useState } from "react";
+import SearchInput from "../../components/Search";
+import ProductsGrid from "../../components/ProductsGrid";
+
 
 export default function Homepage() {
     const { products, isLoading, isError } = useApi(
@@ -29,20 +31,8 @@ export default function Homepage() {
         <main>
             <Banner />
             <h1 className="text-3xl font-bold m-5">Homepage</h1>
-            <input
-                type="text"
-                placeholder="Search products..."
-                value={searchTerm}
-                onChange={handleSearchChange}
-                className="mt-3 p-2 border border-gray-300 rounded-md"
-            />
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-8">
-                {filteredProducts.map((product) => (
-                    <div key={product.id} className="card card-compact bg-base-100 shadow-xl h-96">
-                        <ProductCard product={product} />
-                    </div>
-                ))}
-            </div>
+            <SearchInput value={searchTerm} onChange={handleSearchChange} />
+            <ProductsGrid products={filteredProducts} />
         </main>
     )
 }
