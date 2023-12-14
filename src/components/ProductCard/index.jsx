@@ -14,12 +14,9 @@ export default function ProductCard({ product }) {
             <div className="card-body">
                 <h2 className="card-title">
                     {product.title}
-                    {discountPercentage && <div className="badge badge-secondary ml-2">{discountPercentage} off</div>}
+                    {discountPercentage && <div className="badge badge-accent ml-2">-{discountPercentage}</div>}
                 </h2>
                 <p>{product.description.slice(0, 40)}...</p>
-
-                {/* <p>{product.description.slice(0, 40)}...</p>
-                <p>${product.price}</p> */}
 
                 {product.discountedPrice > 0 && product.discountedPrice < product.price ? (
                     <>
