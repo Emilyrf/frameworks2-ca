@@ -1,16 +1,34 @@
-import MainButton from "../MainButton";
 import { Link } from "react-router-dom";
-
+import useDiscountPercentage from "../../hooks/useDiscountPercentage";
 
 export default function ProductCard({ product }) {
+    const discountPercentage = useDiscountPercentage(product.discountedPrice, product.price);
+
 
     return (
         <>
-            <figure><img src={product.imageUrl} alt={product.title} /></figure>
+            <figure>
+                <img src={product.imageUrl} alt={product.title} />
+            </figure>
+
             <div className="card-body">
-                <h2 className='card-title'>{product.title}</h2>
+                <h2 className="card-title">
+                    {product.title}
+                    {discountPercentage && <div className="badge badge-secondary ml-2">{discountPercentage} off</div>}
+                </h2>
                 <p>{product.description.slice(0, 40)}...</p>
-                <p>${product.price}</p>
+
+                {/* <p>{product.description.slice(0, 40)}...</p>
+                <p>${product.price}</p> */}
+
+                {product.discountedPrice > 0 && product.discountedPrice < product.price ? (
+                    <>
+                        <p>New Price: ${product.discountedPrice}</p>
+                    </>
+                ) : (
+                    <p>${product.price}</p>
+                )}
+
                 <div className="card-actions justify-end">
                     <Link to={`/product/${product.id}`}>
                         <button className="btn btn-primary">View Product</button>

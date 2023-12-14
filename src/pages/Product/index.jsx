@@ -1,72 +1,72 @@
 import { useParams } from 'react-router-dom';
 import { useContext } from 'react';
 import useApi from '../../hooks/useApi';
+import useDiscountPercentage from '../../hooks/useDiscountPercentage'
 import NotFound from '../NotFound';
 import { CartContext } from '../../context/cart';
-import MainButton from '../../components/MainButton';
+import { FaStar } from 'react-icons/fa';
+
 
 export default function ProductPage() {
-const { id } = useParams();
-const { products, isLoading, isError } = useApi(`https://api.noroff.dev/api/v1/online-shop/${id}`);
-const { addToCart } = useContext(CartContext);
+  const { id } = useParams();
+  const { products, isLoading, isError } = useApi(`https://api.noroff.dev/api/v1/online-shop/${id}`);
+  const discountPercentage = useDiscountPercentage(products.discountedPrice, products.price);
+
+  const { addToCart } = useContext(CartContext);
 
   if (isLoading) {
-    return <div>Loading</div>;
+    return <span className="loading loading-spinner loading-lg"></span>;
   }
 
   if (isError) {
     return <NotFound />;
   }
 
-  const calculateDiscount = () => {
-    if (products.discountedPrice < products.price) {
-      const discount = ((products.price - products.discountedPrice) / products.price) * 100;
-      return `Save ${discount.toFixed(2)}%`;
-    }
-    return null;
-  };
-
   return (
-    <div className="container mx-auto p-4">
-        <img className="rounded-lg" src={products.imageUrl} alt={products.title} />
-        <h2 className="text-2xl font-bold mt-4">{products.title}</h2>
-        <div className="flex items-center mt-2">
-            <span className="text-gray-500">Stars: {products.rating}</span>
+    <>
+      <div className="hero-content flex-col lg:flex-row gap-12">
+        <img className="max-w-sm rounded-lg shadow-2xl" src={products.imageUrl} alt={products.title} />
+        <div>
+          <h1 className="text-2xl font-bold mt-4">{products.title}</h1>
+          <span className="text-gray-500">{products.rating} <FaStar></FaStar></span>
+          <p className="py-6">{products.description}</p>
+
+          {products.discountedPrice > 0 && products.discountedPrice < products.price ? (
+            <>
+              <p className="text-lg font-bold">Discounted Price: ${products.discountedPrice}</p>
+              <div className="flex items-center">
+                <span className="mr-2 text-gray-500">Originally: </span>
+                <span className="line-through">${products.price}</span>
+                {discountPercentage && <span className="text-green-600 ml-2">Save {discountPercentage}</span>}
+              </div>
+            </>
+          ) : (
+            <p>${products.price}</p>
+          )}
+
+          <button className="btn btn-primary" onClick={() => addToCart(products)}>Add to cart</button>
         </div>
-        <p className="mt-4">{products.description}</p>
-        <div className="mt-4">
-        {calculateDiscount() && (
-          <>
-            <p className="text-green-600">{calculateDiscount()}</p>
-            <p className="line-through text-gray-500">Before ${products.price}</p>
-          </>
-        )}
-            <p className="text-lg font-bold">Now ${products.discountedPrice}</p>
-        </div>
 
-        <MainButton onClick={() => addToCart(products)}>Add to cart</MainButton>
-
-        
-        <div className="mt-8">
-        <h3 className="text-xl font-bold">Reviews</h3>
-
-        {products.reviews && products.reviews.length > 0 ? (
-          <ul className="mt-4">
-            {products.reviews.map((review) => (
-              <li key={review.id} className="mb-4">
-                <p className="text-lg font-semibold">{review.username} rated it {review.rating} stars</p>
-                <p className="mt-2">{review.description}</p>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p className="mt-4">No reviews available for this product.</p>
-        )}
       </div>
-    </div>
 
-
-
+      <div className="card w-96 bg-base-100 shadow-xl">
+        <div className="card-body">
+          <h2 className="card-title">Product Reviews</h2>
+          {products.reviews && products.reviews.length > 0 ? (
+            <ul className="mt-4">
+              {products.reviews.map((review) => (
+                <li key={review.id} className="mb-4">
+                  <p className="text-lg font-semibold">{review.username} rated it {review.rating} stars</p>
+                  <p className="mt-2">{review.description}</p>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="mt-4">No reviews available for this product.</p>
+          )}
+        </div>
+      </div>
+    </>
 
   );
 }
