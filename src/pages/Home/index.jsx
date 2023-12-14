@@ -13,11 +13,11 @@ export default function Homepage() {
     const [searchTerm, setSearchTerm] = useState('');
 
     const filteredProducts = products.filter((product) =>
-      product.title.toLowerCase().includes(searchTerm.toLowerCase())
+        product.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
-  
+
     const handleSearchChange = (e) => {
-      setSearchTerm(e.target.value);
+        setSearchTerm(e.target.value);
     };
 
     if (isLoading) {
@@ -30,9 +30,15 @@ export default function Homepage() {
     return (
         <main>
             <Banner />
-            <h1 className="text-3xl font-bold m-5">Homepage</h1>
-            <SearchInput value={searchTerm} onChange={handleSearchChange} />
-            <ProductsGrid products={filteredProducts} />
+            <div className="flex justify-between items-center m-5">
+                <h1 className="text-3xl font-bold text-primary ">Homepage</h1>
+                <SearchInput value={searchTerm} onChange={handleSearchChange} />
+            </div>
+            {filteredProducts.length === 0 ? (
+                <p className="text-center text-gray-600">Product not found.</p>
+            ) : (
+                <ProductsGrid products={filteredProducts} />
+            )}
         </main>
     )
 }
