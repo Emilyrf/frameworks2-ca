@@ -12,8 +12,13 @@ export default function Homepage() {
 
     const [searchTerm, setSearchTerm] = useState('');
 
+    const matchProduct = (product, searchTerm) => {
+        const searchRegex = new RegExp(`\\b${searchTerm}`, "i");
+        return searchRegex.test(product.title);
+    };
+
     const filteredProducts = products.filter((product) =>
-        product.title.toLowerCase().includes(searchTerm.toLowerCase())
+    matchProduct(product, searchTerm)
     );
 
     const handleSearchChange = (e) => {
@@ -40,7 +45,7 @@ export default function Homepage() {
                         Product not found.
                     </p>
                 </div>
-                
+
             ) : (
                 <ProductsGrid products={filteredProducts} />
             )}
