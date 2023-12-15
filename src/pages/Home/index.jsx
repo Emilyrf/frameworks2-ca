@@ -1,6 +1,6 @@
-import { useState } from "react";
 import Banner from "../../components/Banner";
 import useApi from '../../hooks/useApi';
+import useProductSearch from "../../hooks/useProductSearch";
 import SearchInput from "../../components/Search";
 import ProductsGrid from "../../components/ProductsGrid";
 
@@ -10,20 +10,9 @@ export default function Homepage() {
         'https://api.noroff.dev/api/v1/online-shop',
     );
 
-    const [searchTerm, setSearchTerm] = useState('');
-
-    const matchProduct = (product, searchTerm) => {
-        const searchRegex = new RegExp(`\\b${searchTerm}`, "i");
-        return searchRegex.test(product.title);
-    };
-
-    const filteredProducts = products.filter((product) =>
-    matchProduct(product, searchTerm)
-    );
-
-    const handleSearchChange = (e) => {
-        setSearchTerm(e.target.value);
-    };
+    const { searchTerm, filteredProducts, handleSearchChange } = useProductSearch(
+        products
+      );
 
     if (isLoading) {
         return <span className="loading loading-spinner loading-lg"></span>
