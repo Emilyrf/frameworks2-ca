@@ -1,7 +1,8 @@
 import React from 'react';
-import NavLink from '../NavLink';
+import NavLink from '../../NavLink';
 import { useContext } from 'react'; 
-import { CartContext } from '../../context/cart';
+import { CartContext } from '../../../context/cart';
+import SearchInput from '../../Search';
 
 
 export default function NavBar() {
