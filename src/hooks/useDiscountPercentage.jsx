@@ -1,18 +1,23 @@
 import { useState, useEffect } from 'react';
 
-const useDiscountPercentage = (discountedPrice, originalPrice) => {
-    const [discountPercentage, setDiscountPercentage] = useState(null);
-  
-    useEffect(() => {
-      if (discountedPrice < originalPrice) {
-        const discount = ((originalPrice - discountedPrice) / originalPrice) * 100;
-        setDiscountPercentage(`${discount.toFixed(2).replace(/\.?0+$/, '')}%`);
-      } else {
-        setDiscountPercentage(null);
-      }
-    }, [discountedPrice, originalPrice]);
-  
-    return discountPercentage;
-  };
-  
-  export default useDiscountPercentage;
+export default function useDiscountPercentage(discountedPrice, originalPrice) {
+  const [discountPercentage, setDiscountPercentage] = useState(null);
+
+  useEffect(() => {
+    if (discountedPrice > 0 && discountedPrice < originalPrice) {
+      const percentage = ((originalPrice - discountedPrice) / originalPrice) * 100;
+     
+      const formattedPercentage = new Intl.NumberFormat('en-US', {
+        style: 'percent',
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      }).format(percentage / 100);
+
+      setDiscountPercentage(formattedPercentage);
+    } else {
+      setDiscountPercentage(null);
+    }
+  }, [discountedPrice, originalPrice]);
+
+  return discountPercentage;
+}
