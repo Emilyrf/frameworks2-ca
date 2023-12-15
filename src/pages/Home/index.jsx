@@ -35,7 +35,12 @@ export default function Homepage() {
                 <SearchInput value={searchTerm} onChange={handleSearchChange} />
             </div>
             {filteredProducts.length === 0 ? (
-                <p className="text-center text-gray-600">Product not found.</p>
+                <div className="min-h-[300px] flex items-center justify-center">
+                    <p className="text-gray-600">
+                        Product not found.
+                    </p>
+                </div>
+                
             ) : (
                 <ProductsGrid products={filteredProducts} />
             )}
