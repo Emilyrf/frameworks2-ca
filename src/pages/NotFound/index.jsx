@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 export default function NotFound() {
     const navigate = useNavigate();
     return (
-        <div className="hero min-h-screen bg-primary-content">
+        <div className="hero min-h-screen  bg-base-200">
             <div className="max-w-5xl mx-auto hero-content flex-col gap-12 lg:flex-row-reverse items-center justify-center">
                 <img src="/assets/erro_404.png" alt="Dog wearing glasses."/>
                 <div className="text-center lg:text-left">
