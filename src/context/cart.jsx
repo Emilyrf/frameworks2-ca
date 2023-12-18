@@ -3,7 +3,8 @@ import { createContext, useState, useEffect } from 'react'
 export const CartContext = createContext()
 
 export const CartProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState(localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : [])
+  const [cartItems, setCartItems] = useState(localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : []);
+  const [showSuccessAlert, setShowSuccessAlert] = useState(false);
 
   const addToCart = (item) => {
     const isItemInCart = cartItems.find((cartItem) => cartItem.id === item.id);
@@ -19,6 +20,11 @@ export const CartProvider = ({ children }) => {
     } else {
       setCartItems([...cartItems, { ...item, quantity: 1 }]);
     }
+
+    setShowSuccessAlert(true);
+    setTimeout(() => {
+      setShowSuccessAlert(false);
+    }, 3000);
   };
 
   const removeFromCart = (item) => {
@@ -42,7 +48,7 @@ export const CartProvider = ({ children }) => {
   };
 
   const getCartTotal = () => {
-    return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
+    return cartItems.reduce((total, item) => total + item.discountedPrice * item.quantity, 0);
   };
 
   useEffect(() => {
@@ -61,6 +67,7 @@ export const CartProvider = ({ children }) => {
       value={{
         cartItems,
         addToCart,
+        showSuccessAlert,
         removeFromCart,
         clearCart,
         getCartTotal,

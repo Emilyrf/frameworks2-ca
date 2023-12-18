@@ -12,7 +12,7 @@ export default function ProductPage() {
   const { products, isLoading, isError } = useApi(`https://api.noroff.dev/api/v1/online-shop/${id}`);
   const discountPercentage = useDiscountPercentage(products.discountedPrice, products.price);
 
-  const { addToCart } = useContext(CartContext);
+  const { addToCart, showSuccessAlert } = useContext(CartContext);
 
   if (isLoading) {
     return <span className="loading loading-spinner loading-lg"></span>;
@@ -45,14 +45,21 @@ export default function ProductPage() {
           ) : (
             <p className="text-lg font-bold">Price: ${products.price}</p>
           )}
+
+          {showSuccessAlert && (
+            <div role="alert" className="alert alert-success m-2">
+              <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span>Product added to cart!</span>
+            </div>
+          )}
+          
           <div className="card-actions justify-end">
             <button className="btn btn-primary" onClick={() => addToCart(products)}>Add to cart</button>
           </div>
-
-
         </div>
       </div>
-
       <div className="flex flex-col items-center  mx-auto p-4">
         <h2 className="text-2xl font-bold mb-4 text-primary">Reviews</h2>
 
