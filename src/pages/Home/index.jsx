@@ -29,7 +29,7 @@ export default function Homepage() {
                 <SearchInput value={searchTerm} onChange={handleSearchChange} />
             </div>
             {filteredProducts.length === 0 ? (
-                <div className="min-h-[300px] flex items-center justify-center">
+                <div className="flex items-center justify-center">
                     <p className="text-gray-600">
                         Product not found.
                     </p>
