@@ -51,7 +51,10 @@ export const CartProvider = ({ children }) => {
   };
 
   const getCartTotal = () => {
-    return cartItems.reduce((total, item) => total + item.discountedPrice * item.quantity, 0);
+    const total = cartItems.reduce((total, item) => total + item.discountedPrice * item.quantity, 0);
+
+  // Format the total as currency (USD in this example)
+  return total.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
   };
 
   useEffect(() => {
