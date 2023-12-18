@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react'
+import { createContext, useState, useEffect } from 'react';
 
 export const CartContext = createContext()
 
@@ -6,6 +6,7 @@ export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState(localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : []);
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
   const [isAddToCartDisabled, setIsAddToCartDisabled] = useState(false);
+
 
   const addToCart = (item) => {
     setIsAddToCartDisabled(true);
@@ -53,8 +54,8 @@ export const CartProvider = ({ children }) => {
   const getCartTotal = () => {
     const total = cartItems.reduce((total, item) => total + item.discountedPrice * item.quantity, 0);
 
-  // Format the total as currency (USD in this example)
-  return total.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+    // Format the total as currency (USD in this example)
+    return total.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
   };
 
   useEffect(() => {
@@ -67,6 +68,7 @@ export const CartProvider = ({ children }) => {
       setCartItems(JSON.parse(cartItems));
     }
   }, []);
+
 
   return (
     <CartContext.Provider
