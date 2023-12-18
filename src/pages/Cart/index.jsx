@@ -1,8 +1,16 @@
 import { useContext } from "react";
 import { CartContext } from "../../context/cart";
-
+import { useNavigate } from "react-router-dom";
+ 
 export default function Cart() {
-    const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } = useContext(CartContext)
+    const { cartItems, addToCart, removeFromCart, clearCart, getCartTotal } = useContext(CartContext);
+    const navigate = useNavigate();
+
+    const handleCheckout = () => {
+        clearCart();
+        navigate("/checkout");
+    };
+
     return (
         <div className="flex-col flex items-center bg-white gap-8 p-10 text-black text-sm">
             <h1 className="text-2xl font-bold">Cart</h1>
@@ -13,7 +21,7 @@ export default function Cart() {
                             <img src={item.imageUrl} alt={item.title} className="rounded-md h-24" />
                             <div className="flex flex-col">
                                 <h1 className="text-lg font-bold">{item.title}</h1>
-                                <p className="text-gray-600">{item.price}</p>
+                                <p className="text-gray-600">{item.discountedPrice}</p>
                             </div>
                         </div>
                         <div className="flex gap-4">
@@ -37,16 +45,17 @@ export default function Cart() {
                         </div>
                     </div>
                 ))}
+                <p className="text-lg font-bold">Total: {getCartTotal()}</p>
             </div>
             {
                 cartItems.length > 0 ? (
-                    <div className="flex flex-col justify-between items-center">
-                        <h1 >Total: ${getCartTotal()}</h1>
-                        <button onClick={() => {
-                            clearCart()
-                        }}
-                        >
+                    <div className="card-actions">
+
+                        <button className="btn" onClick={() => clearCart()}>
                             Clear cart
+                        </button>
+                        <button className="btn btn-primary" onClick={handleCheckout}>
+                            Checkout
                         </button>
                     </div>
                 ) : (
