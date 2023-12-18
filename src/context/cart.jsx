@@ -5,8 +5,10 @@ export const CartContext = createContext()
 export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState(localStorage.getItem('cartItems') ? JSON.parse(localStorage.getItem('cartItems')) : []);
   const [showSuccessAlert, setShowSuccessAlert] = useState(false);
+  const [isAddToCartDisabled, setIsAddToCartDisabled] = useState(false);
 
   const addToCart = (item) => {
+    setIsAddToCartDisabled(true);
     const isItemInCart = cartItems.find((cartItem) => cartItem.id === item.id);
 
     if (isItemInCart) {
@@ -23,6 +25,7 @@ export const CartProvider = ({ children }) => {
 
     setShowSuccessAlert(true);
     setTimeout(() => {
+      setIsAddToCartDisabled(false);
       setShowSuccessAlert(false);
     }, 3000);
   };
@@ -68,6 +71,7 @@ export const CartProvider = ({ children }) => {
         cartItems,
         addToCart,
         showSuccessAlert,
+        isAddToCartDisabled,
         removeFromCart,
         clearCart,
         getCartTotal,

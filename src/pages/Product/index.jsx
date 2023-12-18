@@ -12,7 +12,7 @@ export default function ProductPage() {
   const { products, isLoading, isError } = useApi(`https://api.noroff.dev/api/v1/online-shop/${id}`);
   const discountPercentage = useDiscountPercentage(products.discountedPrice, products.price);
 
-  const { addToCart, showSuccessAlert } = useContext(CartContext);
+  const { addToCart, showSuccessAlert, isAddToCartDisabled } = useContext(CartContext);
 
   if (isLoading) {
     return <span className="loading loading-spinner loading-lg"></span>;
@@ -54,9 +54,15 @@ export default function ProductPage() {
               <span>Product added to cart!</span>
             </div>
           )}
-          
+
           <div className="card-actions justify-end">
-            <button className="btn btn-primary" onClick={() => addToCart(products)}>Add to cart</button>
+            <button
+              className="btn btn-primary"
+              onClick={() => addToCart(products)}
+              disabled={isAddToCartDisabled}
+            >
+              {isAddToCartDisabled ? 'Adding to cart...' : 'Add to cart'}
+            </button>
           </div>
         </div>
       </div>
