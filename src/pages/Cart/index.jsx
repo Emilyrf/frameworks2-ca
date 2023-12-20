@@ -13,16 +13,16 @@ export default function Cart() {
   }
 
   return (
-    <div className='flex-col flex items-center bg-white gap-8 p-10 text-black text-sm'>
+    <div className='flex-col flex items-center bg-white gap-8 text-black text-sm mt-4'>
       <h1 className='text-2xl font-bold'>Cart</h1>
       <div className='flex flex-col gap-4'>
         {cartItems.map((item) => (
-          <div className='flex justify-between items-center' key={item.id}>
+          <div className='flex justify-between items-center card card-side p-5 shadow-xl' key={item.id}>
             <div className='flex gap-4'>
               <img
                 src={item.imageUrl}
                 alt={item.title}
-                className='rounded-md h-24'
+                className='rounded-md h-24 w-24'
               />
               <div className='flex flex-col'>
                 <h1 className='text-lg font-bold'>{item.title}</h1>
@@ -50,7 +50,7 @@ export default function Cart() {
             </div>
           </div>
         ))}
-        <p className='text-lg font-bold'>Total: {getCartTotal()}</p>
+        <p className='text-lg font-bold ml-4'>Total: {getCartTotal()}</p>
       </div>
       {cartItems.length > 0 ? (
         <div className='card-actions'>
