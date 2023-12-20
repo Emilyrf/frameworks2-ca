@@ -1,23 +1,24 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react'
 
 export default function useDiscountPercentage(discountedPrice, originalPrice) {
-  const [discountPercentage, setDiscountPercentage] = useState(null);
+  const [discountPercentage, setDiscountPercentage] = useState(null)
 
   useEffect(() => {
     if (discountedPrice > 0 && discountedPrice < originalPrice) {
-      const percentage = ((originalPrice - discountedPrice) / originalPrice) * 100;
-     
+      const percentage =
+        ((originalPrice - discountedPrice) / originalPrice) * 100
+
       const formattedPercentage = new Intl.NumberFormat('en-US', {
         style: 'percent',
         minimumFractionDigits: 0,
         maximumFractionDigits: 0,
-      }).format(percentage / 100);
+      }).format(percentage / 100)
 
-      setDiscountPercentage(formattedPercentage);
+      setDiscountPercentage(formattedPercentage)
     } else {
-      setDiscountPercentage(null);
+      setDiscountPercentage(null)
     }
-  }, [discountedPrice, originalPrice]);
+  }, [discountedPrice, originalPrice])
 
-  return discountPercentage;
+  return discountPercentage
 }

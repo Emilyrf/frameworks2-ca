@@ -1,23 +1,22 @@
-import { useState } from "react";
+import { useState } from 'react'
 
 const useProductSearch = (initialProducts) => {
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState('')
 
   const matchProduct = (product, searchTerm) => {
-    const searchRegex = new RegExp(`\\b${searchTerm}`, "i");
-    return searchRegex.test(product.title);
-  };
+    const searchRegex = new RegExp(`\\b${searchTerm}`, 'i')
+    return searchRegex.test(product.title)
+  }
 
   const filteredProducts = initialProducts.filter((product) =>
-    matchProduct(product, searchTerm)
-  );
-
+    matchProduct(product, searchTerm),
+  )
 
   const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
+    setSearchTerm(e.target.value)
+  }
 
-  return { searchTerm, filteredProducts, handleSearchChange };
-};
+  return { searchTerm, filteredProducts, handleSearchChange }
+}
 
-export default useProductSearch;
+export default useProductSearch

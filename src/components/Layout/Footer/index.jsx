@@ -1,9 +1,11 @@
 export default function Footer() {
-    return (
-        <footer className="footer footer-center p-4 bg-base-300 text-base-content">
-            <aside>
-                <p>Copyright © 2023 - This is a assigment for Noroff FED - By Emilyrf</p>
-            </aside>
-        </footer>
-    )
+  return (
+    <footer className='footer footer-center p-4 bg-base-300 text-base-content'>
+      <aside>
+        <p>
+          Copyright © 2023 - This is a assigment for Noroff FED - By Emilyrf
+        </p>
+      </aside>
+    </footer>
+  )
 }
