@@ -20,13 +20,12 @@ Create an e-commerce website containing: Homepage , Individual product page, Car
 
 
 ## Deployed with Netlify :globe_with_meridians:
+[Mercado Page](https://frameworks2-ca-emilyrf.netlify.app)
 
-[Mercado Page]([https://loquacious-yeot-03cf33.netlify.app](https://frameworks2-ca-emilyrf.netlify.app)
 
 
 ## Getting Started :hammer_and_wrench:
-
-### Installing , Running and Testing
+### Installing and Running
 
 1. Download ZIP, Open with GitHub Desktop or clone the repo:
 ```bash
