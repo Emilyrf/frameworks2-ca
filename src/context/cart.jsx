@@ -60,7 +60,6 @@ export const CartProvider = ({ children }) => {
       0,
     )
 
-    // Format the total as currency (USD in this example)
     return total.toLocaleString('en-US', { style: 'currency', currency: 'USD' })
   }
 
