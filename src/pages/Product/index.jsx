@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom'
 import { useContext } from 'react'
 import useApi from '../../hooks/useApi'
+import { API_BASE_URL } from '../../components/constants/api'
 import useDiscountPercentage from '../../hooks/useDiscountPercentage'
 import NotFound from '../NotFound'
 import { CartContext } from '../../context/cart'
@@ -9,9 +10,10 @@ import { LoadingSpinner } from '../../components/LoadingSpinner'
 
 export default function ProductPage() {
   const { id } = useParams()
-  const { products, isLoading, isError } = useApi(
-    `https://api.noroff.dev/api/v1/online-shop/${id}`,
-  )
+  const productApiUrl = `${API_BASE_URL}${id}`;
+
+  const { products, isLoading, isError } = useApi(productApiUrl);
+
   const discountPercentage = useDiscountPercentage(
     products.discountedPrice,
     products.price,

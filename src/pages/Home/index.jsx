@@ -1,14 +1,13 @@
 import Banner from '../../components/Banner'
 import useApi from '../../hooks/useApi'
+import { API_BASE_URL } from '../../components/constants/api'
 import useProductSearch from '../../hooks/useProductSearch'
 import SearchInput from '../../components/Search'
 import ProductsGrid from '../../components/ProductsGrid'
 import { LoadingSpinner } from '../../components/LoadingSpinner'
 
 export default function Homepage() {
-  const { products, isLoading, isError } = useApi(
-    'https://api.noroff.dev/api/v1/online-shop',
-  )
+  const { products, isLoading, isError } = useApi(API_BASE_URL)
 
   const { searchTerm, filteredProducts, handleSearchChange } =
     useProductSearch(products)
