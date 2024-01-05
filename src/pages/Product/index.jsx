@@ -7,6 +7,7 @@ import NotFound from '../NotFound'
 import { CartContext } from '../../context/cart'
 import { FaStar } from 'react-icons/fa'
 import { LoadingSpinner } from '../../components/LoadingSpinner'
+import AlertSuccess from '../../components/AlertSuccess'
 
 export default function ProductPage() {
   const { id } = useParams()
@@ -34,7 +35,7 @@ export default function ProductPage() {
     <>
       <div className='hero-content flex-col lg:flex-row gap-12'>
         <img
-          className='max-w-sm rounded-lg shadow-2xl'
+          className='max-w-full rounded-lg shadow-2xl mb-8 lg:mb-0 lg:w-1/2'
           src={products.imageUrl}
           alt={products.title}
         />
@@ -67,24 +68,7 @@ export default function ProductPage() {
             <p className='text-lg font-bold'>Price: ${products.price}</p>
           )}
 
-          {showSuccessAlert && (
-            <div role='alert' className='alert alert-success m-2'>
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                className='stroke-current shrink-0 h-6 w-6'
-                fill='none'
-                viewBox='0 0 24 24'
-              >
-                <path
-                  strokeLinecap='round'
-                  strokeLinejoin='round'
-                  strokeWidth='2'
-                  d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'
-                />
-              </svg>
-              <span>Product added to cart!</span>
-            </div>
-          )}
+          {showSuccessAlert && <AlertSuccess message='Product added to cart!'/>}
 
           <div className='card-actions justify-end'>
             <button
