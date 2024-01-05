@@ -1,14 +1,17 @@
+import { Outlet } from 'react-router-dom';
 import NavBar from './Nav'
 import Footer from './Footer'
 
-const Layout = ({ children }) => (
-  <div>
-    <NavBar />
-    <div className='grid grid-rows-[auto_1fr_auto] min-h-screen'>
-      {children}
+function Layout() {
+  return (
+    <div>
+      <NavBar />
+      <div className='grid grid-rows-[auto_1fr_auto] min-h-screen'>
+        <Outlet />
+      </div>
+      <Footer />
     </div>
-    <Footer />
-  </div>
-)
+  );
+}
 
-export default Layout
+export default Layout;
