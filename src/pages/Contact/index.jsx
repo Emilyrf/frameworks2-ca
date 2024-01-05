@@ -48,8 +48,10 @@ const ContactPage = () => {
         <div className='card shrink-0 w-full max-w-md shadow-2xl bg-base-100'>
           <form className='card-body' onSubmit={handleSubmit(onSubmit)}>
             <h1 className='text-3xl font-bold mb-8 text-center'>Contact us</h1>
-            
-            {isSubmitted && <AlertSuccess message='Form submitted successfully!' />}
+
+            {isSubmitted && (
+              <AlertSuccess message='Form submitted successfully!' />
+            )}
 
             <div className='form-control'>
               <label className='label' htmlFor='fullName'>

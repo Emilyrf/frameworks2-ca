@@ -16,19 +16,31 @@ export default function NavBar() {
       <nav className='flex h-20 bg-base-200 justify-center items-center gap-x-12 px-5 sm:rounded-xl sm:m-5'>
         <NavLink
           to='/'
-          className={`btn btn-ghost text-xl ${currentLocation.pathname === '/' ? 'font-bold text-primary underline' : ''}`}
+          className={`btn btn-ghost text-xl ${
+            currentLocation.pathname === '/'
+              ? 'font-bold text-primary underline'
+              : ''
+          }`}
         >
           Home
         </NavLink>
         <NavLink
           to='/contact'
-          className={`btn btn-ghost text-xl ${currentLocation.pathname === '/contact' ? 'font-bold text-primary underline' : ''}`}
+          className={`btn btn-ghost text-xl ${
+            currentLocation.pathname === '/contact'
+              ? 'font-bold text-primary underline'
+              : ''
+          }`}
         >
           Contact
         </NavLink>
         <NavLink
           to='/cart'
-          className={`btn btn-ghost text-xl relative flex items-center ${currentLocation.pathname === '/cart' ? 'font-bold text-primary ' : ''}`}
+          className={`btn btn-ghost text-xl relative flex items-center ${
+            currentLocation.pathname === '/cart'
+              ? 'font-bold text-primary '
+              : ''
+          }`}
         >
           <div className='indicator'>
             <svg

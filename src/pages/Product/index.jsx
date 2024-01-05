@@ -11,9 +11,9 @@ import AlertSuccess from '../../components/AlertSuccess'
 
 export default function ProductPage() {
   const { id } = useParams()
-  const productApiUrl = `${API_BASE_URL}${id}`;
+  const productApiUrl = `${API_BASE_URL}${id}`
 
-  const { products, isLoading, isError } = useApi(productApiUrl);
+  const { products, isLoading, isError } = useApi(productApiUrl)
 
   const discountPercentage = useDiscountPercentage(
     products.discountedPrice,
@@ -68,7 +68,9 @@ export default function ProductPage() {
             <p className='text-lg font-bold'>Price: ${products.price}</p>
           )}
 
-          {showSuccessAlert && <AlertSuccess message='Product added to cart!'/>}
+          {showSuccessAlert && (
+            <AlertSuccess message='Product added to cart!' />
+          )}
 
           <div className='card-actions justify-end'>
             <button

@@ -6,7 +6,6 @@ import ProductsGrid from '../../components/ProductsGrid'
 import { LoadingSpinner } from '../../components/LoadingSpinner'
 import AlertError from '../../components/AlertError'
 
-
 export default function Homepage() {
   const { products, isLoading, isError } = useApi(API_BASE_URL)
 
@@ -15,9 +14,7 @@ export default function Homepage() {
   }
 
   if (isError) {
-    return (
-     <AlertError message='An error occurred while loading the page.' />
-    )
+    return <AlertError message='An error occurred while loading the page.' />
   }
   return (
     <main>
@@ -26,8 +23,7 @@ export default function Homepage() {
         <h1 className='text-3xl font-bold text-primary '>Homepage</h1>
         <SearchInput products={products} />
       </div>
-      <ProductsGrid products={products} />
-      )
+      <ProductsGrid products={products} />)
     </main>
   )
 }

@@ -17,7 +17,10 @@ export default function Cart() {
       <h1 className='text-2xl font-bold'>Cart</h1>
       <div className='flex flex-col gap-4'>
         {cartItems.map((item) => (
-          <div className='flex justify-between items-center card card-side p-5 shadow-xl' key={item.id}>
+          <div
+            className='flex justify-between items-center card card-side p-5 shadow-xl'
+            key={item.id}
+          >
             <div className='flex gap-4'>
               <img
                 src={item.imageUrl}

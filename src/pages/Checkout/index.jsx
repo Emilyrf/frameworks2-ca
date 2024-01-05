@@ -4,11 +4,13 @@ const CheckoutPage = () => {
   return (
     <div
       className='hero min-h-screen'
-      style={{ backgroundImage: 'url(/assets/checkout.jpeg)' ,
-      alt:'Checkout success image', 
-      loading:'lazy' , 
-      backgroundSize: 'cover',
-      backgroundPosition: 'center' }}
+      style={{
+        backgroundImage: 'url(/assets/checkout.jpeg)',
+        alt: 'Checkout success image',
+        loading: 'lazy',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+      }}
     >
       <div className='hero-overlay bg-opacity-40'></div>
       <div className='hero-content text-center text-neutral-content'>

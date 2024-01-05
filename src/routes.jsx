@@ -8,13 +8,12 @@ import NotFound from './pages/NotFound'
 import CheckoutPage from './pages/Checkout'
 import { CartProvider } from './context/cart'
 
-
 function AppRoutes() {
   return (
     <BrowserRouter>
       <CartProvider>
         <Routes>
-          <Route path='/' element={<Layout />} >
+          <Route path='/' element={<Layout />}>
             <Route index element={<Homepage />} />
             <Route path='contact' element={<ContactPage />} />
             <Route path='product/:id' element={<ProductPage />} />
@@ -25,6 +24,6 @@ function AppRoutes() {
         </Routes>
       </CartProvider>
     </BrowserRouter>
-  );
+  )
 }
 export default AppRoutes
