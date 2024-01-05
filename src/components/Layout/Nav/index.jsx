@@ -1,5 +1,5 @@
 import React from 'react'
-import NavLink from '../NavLink'
+import { NavLink, useLocation } from 'react-router-dom'
 import { useContext } from 'react'
 import { CartContext } from '../../../context/cart'
 
@@ -9,13 +9,27 @@ export default function NavBar() {
     (total, item) => total + item.quantity,
     0,
   )
+  const currentLocation = useLocation()
 
   return (
     <header>
       <nav className='flex h-20 bg-base-200 justify-center items-center gap-x-12 px-5 sm:rounded-xl sm:m-5'>
-        <NavLink to='/'>Home</NavLink>
-        <NavLink to='/contact'>Contact</NavLink>
-        <NavLink className='relative flex items-center' to='/cart'>
+        <NavLink
+          to='/'
+          className={`btn btn-ghost text-xl ${currentLocation.pathname === '/' ? 'font-bold' : ''}`}
+        >
+          Home
+        </NavLink>
+        <NavLink
+          to='/contact'
+          className={`btn btn-ghost text-xl ${currentLocation.pathname === '/contact' ? 'font-bold' : ''}`}
+        >
+          Contact
+        </NavLink>
+        <NavLink
+          to='/cart'
+          className={`btn btn-ghost text-xl relative flex items-center ${currentLocation.pathname === '/cart' ? 'font-bold' : ''}`}
+        >
           <div className='indicator'>
             <svg
               xmlns='http://www.w3.org/2000/svg'
