@@ -8,63 +8,23 @@ import NotFound from './pages/NotFound'
 import CheckoutPage from './pages/Checkout'
 import { CartProvider } from './context/cart'
 
+
 function AppRoutes() {
   return (
     <BrowserRouter>
       <CartProvider>
         <Routes>
-          <Route
-            path='/'
-            element={
-              <Layout>
-                <Homepage />
-              </Layout>
-            }
-          />
-          <Route
-            path='/contact'
-            element={
-              <Layout>
-                <ContactPage />
-              </Layout>
-            }
-          />
-          <Route
-            path='/product/:id'
-            element={
-              <Layout>
-                <ProductPage />
-              </Layout>
-            }
-          />
-          <Route
-            path='/cart'
-            element={
-              <Layout>
-                <CartPage />
-              </Layout>
-            }
-          />
-          <Route
-            path='/checkout'
-            element={
-              <Layout>
-                <CheckoutPage />
-              </Layout>
-            }
-          />
-          <Route
-            path='*'
-            element={
-              <Layout>
-                <NotFound />
-              </Layout>
-            }
-          />
+          <Route path='/' element={<Layout />} >
+            <Route index element={<Homepage />} />
+            <Route path='contact' element={<ContactPage />} />
+            <Route path='product/:id' element={<ProductPage />} />
+            <Route path='cart' element={<CartPage />} />
+            <Route path='checkout' element={<CheckoutPage />} />
+            <Route path='*' element={<NotFound />} />
+          </Route>
         </Routes>
       </CartProvider>
     </BrowserRouter>
-  )
+  );
 }
-
 export default AppRoutes
